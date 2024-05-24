@@ -131,11 +131,23 @@ button {
     padding-left: 20%;
 }
 
-
 i {
     font-size: 1.5rem;
     position: absolute;
     top: 0.3rem; 
     left: 0.3rem; 
     padding: 0.3rem; 
+}
+
+.operations:hover {
+    background-color: white;
+    color:#ff8800;
+}
+
+.other:hover {
+    background-color: white;
+}
+
+.number:hover {
+    background-color: #4d4d4d;
 }
