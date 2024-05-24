@@ -6,12 +6,45 @@
     <title>Calculator</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">    
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/fontello.css">
     <script src="script.js" defer></script> 
 </head>
-<body>
-    
+<body class="flex">
+    <div class="container">
+        <div class="calculator">
+            <a href="https://github.com/luciavu/calculator" target="_blank"><i class="icon-github-circled"></i></a>
+            <div class="screen flex">
+                <div class="history">
+                    200+100
+                </div>
+                <div class="result">
+                    300
+                </div>
+            </div>
+            <div class="buttons">
+                <button class="other" onclick="clearDisplay()">C</button>
+                <button class="other" onclick="appendtoDisplay('-')">+/-</button>
+                <button class="other" onclick="calculate('%')">%</button>
+                <button class="operations" onclick="calculate('/')">÷</button>
+                <button class="number" onclick="appendtoDisplay('7')">7</button>
+                <button class="number" onclick="appendtoDisplay('8')">8</button>
+                <button class="number" onclick="appendtoDisplay('8')">9</button>
+                <button class="operations" onclick="calculate('*')">×</button>
+                <button class="number" onclick="appendtoDisplay('4')">4</button>
+                <button class="number" onclick="appendtoDisplay('5')">5</button>
+                <button class="number" onclick="appendtoDisplay('6')">6</button>
+                <button class="operations" onclick="calculate('-')">-</button>
+                <button class="number" onclick="appendtoDisplay('1')">1</button>
+                <button class="number" onclick="appendtoDisplay('2')">2</button>
+                <button class="number" onclick="appendtoDisplay('3')">3</button>
+                <button class="operations" onclick="calculate('+')">+</button>
+                <button class="number zero" onclick="appendtoDisplay('0')">0</button>
+                <button class="number" onclick="appendtoDisplay('.')">.</button>
+                <button class="operations" onclick="calculate('=')">=</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
