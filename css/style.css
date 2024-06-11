@@ -82,17 +82,22 @@ html, body {
 
 .history {
     width: 100%;
+    display: flex;
+    flex-direction: column-reverse; 
+    flex-wrap: wrap; 
+    overflow: auto; 
+    max-height: 60%; 
+    padding: 0.5rem;
+    color: #4d4d4d;
     text-align: right;
-    color:#4d4d4d;
-    
 }
 
 .result {
     width: 100%;
+    height: 3.5rem;
     font-size: 3.5rem;
     font-weight: 300;
     text-align: right;
-    
 }
 
 .buttons {
@@ -154,4 +159,9 @@ i {
 
 .number:hover {
     background-color: #4d4d4d;
+}
+
+.active {
+    background-color: white;
+    color:#ff8800;
 }
