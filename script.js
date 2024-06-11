@@ -1,6 +1,5 @@
 const MAX_LENGTH = 9;
 let sum = 0;
-//let prevOperator = "";
 
 function appendToDisplay(char) {
     let display = document.querySelector(".result");
