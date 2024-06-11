@@ -16,31 +16,29 @@
         <div class="calculator">
             <a href="https://github.com/luciavu/calculator" target="_blank"><i class="icon-github-circled"></i></a>
             <div class="screen flex">
-                <div class="history">
-                    200+100
-                </div>
+                <div class="history"></div>
                 <div class="result"></div>
             </div>
             <div class="buttons">
                 <button class="other" onclick="clearDisplay();">C</button>
                 <button class="other" onclick="switchSign();">+/-</button>
-                <button class="other" onclick="percentage()">%</button>
-                <button class="operations /" onclick="appendToDisplay('/'); calculate('/');">÷</button>
+                <button class="other" onclick="percentage();">%</button>
+                <button class="operations" id="divide" onclick="selectOperator('÷'); setActive('divide');">÷</button>
                 <button class="number" onclick="appendToDisplay('7');">7</button>
                 <button class="number" onclick="appendToDisplay('8');">8</button>
                 <button class="number" onclick="appendToDisplay('9');">9</button>
-                <button class="operations *" onclick="appendToDisplay('×'); calculate('*');">×</button>
+                <button class="operations" id="multiply" onclick="selectOperator('×'); setActive('multiply');">×</button>
                 <button class="number" onclick="appendToDisplay('4');">4</button>
                 <button class="number" onclick="appendToDisplay('5');">5</button>
                 <button class="number" onclick="appendToDisplay('6');">6</button>
-                <button class="operations -" onclick="appendToDisplay('-'); calculate('-');">-</button>
+                <button class="operations" id="minus" onclick="selectOperator('-'); setActive('minus');">-</button>
                 <button class="number" onclick="appendToDisplay('1');">1</button>
                 <button class="number" onclick="appendToDisplay('2');">2</button>
                 <button class="number" onclick="appendToDisplay('3');">3</button>
-                <button class="operations +" onclick="appendToDisplay('+'); calculate('+');">+</button>
+                <button class="operations" id="add" onclick="selectOperator('+'); setActive('add');">+</button>
                 <button class="number zero" onclick="appendToDisplay('0');">0</button>
                 <button class="number" onclick="appendToDisplay('.');">.</button>
-                <button class="operations =" onclick="calculate('=');">=</button>
+                <button class="operations equals" id="equals" onclick="selectOperator('='); setActive('equals'); ">=</button>
             </div>
         </div>
     </div>
