@@ -125,8 +125,13 @@ function calculate(op1, op2, operator) {
 };
 
 function setActive(operatorId) {
-    history = document.querySelector(".history");
-    let prev = document.querySelector('.active')
+    let display = document.querySelector('.result');
+    let prev = document.querySelector('.active');
+
+    if (operatorId == 'equals') {
+        display.innerHTML = sum;
+    };
+    
     if (prev) {
         prev.classList.remove('active');
     };
