@@ -1,12 +1,13 @@
 const MAX_LENGTH = 9;
 let sum = 0;
 let totalHistory = 0;
+let lastInput = 0;
 
 function appendToDisplay(char) {
     document.querySelector(".clear").innerHTML = 'C';
-    
+    console.log(lastInput);
     let display = document.querySelector(".result");
-    if (display.innerHTML == sum) {
+    if (lastInput) {
         display.innerHTML = "";
     }
     
@@ -20,6 +21,7 @@ function appendToDisplay(char) {
         display.innerHTML += char;
         adjustFontSize();
     };
+    lastInput = 0;
 };
 
 function adjustFontSize() {
@@ -79,22 +81,27 @@ function selectOperator(operator) {
     let operand = document.querySelector(".result");
     let history = document.querySelector(".history");
     let prevOperator = document.querySelector('.active');
-    
+   
     // Update, store history - operand
     history.innerHTML += operand.innerHTML;
     const historyLen = history.innerHTML.length;
     if(!historyLen) {
         return;
     }
+
     if (prevOperator) {
         if (prevOperator.id == 'equals') {
-            history.innerHTML = sum;
+            history.innerHTML = operand.innerHTML;
         };
     };
 
     // If last input operator, switch operator
-    if (history.innerHTML.charAt(historyLen - 1) == " ") {
-        history.innerHTML = history.innerHTML.substring(0, historyLen - 3) + ` ${operator} `;
+    console.log(lastInput)
+    if (lastInput && prevOperator.id != 'equals') {
+        history.innerHTML = history.innerHTML.slice(0,(-3 - operand.innerHTML.length));
+        history.innerHTML += ` ${operator} `;
+        lastInput = 1;
+        return;
     } else { // Else add operator
         // If first operation
         if (!(history.innerHTML.includes('+') || history.innerHTML.includes('-') ||
@@ -105,15 +112,15 @@ function selectOperator(operator) {
         } else {
             // Update operand
             const op2 = operand.innerHTML;
-            sum = calculate(sum, op2, prevOperator);
+            let result = parseFloat(calculate(sum, op2, prevOperator)).toFixed(6);
+            sum = parseFloat(result.substring(0, result.indexOf('.') + 7));
             totalHistory += sum;
         };
         history.innerHTML += ` ${operator} `;
     };
 
-    if (operator != '=') {
-        operand.innerHTML = sum;
-    };
+    operand.innerHTML = sum;
+    lastInput = 1;
 };
 
 function calculate(op1, op2, operator) {
@@ -148,3 +155,41 @@ function setActive(operatorId) {
     };
     document.getElementById(operatorId).classList.add('active');
 };
+
+document.addEventListener('keydown', function(event) {
+    const key = event.key;
+    if (/[0-9]/.test(key)) {
+        appendToDisplay(key);
+    } else if (key === '+' || key === '-' || key === '*' 
+        || key === '/' || key === 'Enter') {
+        
+        switch(key) {
+            case '+':
+                selectOperator('+');
+                setActive('add');
+                break;
+            case '-':
+                selectOperator('-');
+                setActive('minus');
+                break;
+            case '*':
+                selectOperator('×');
+                setActive('multiply');
+                break;
+            case '/':
+                selectOperator('÷')
+                setActive('divide');
+                break;
+            case 'Enter':
+                selectOperator('=');
+                setActive('equals');
+                break;
+        };
+    } else if (key === 'c') {
+        clearDisplay();
+    } else if (key === '%') {
+        percentage();
+    } else if (key === '.') {
+        appendToDisplay('.');
+    }
+});
