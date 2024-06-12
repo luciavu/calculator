@@ -4,7 +4,11 @@ let totalHistory = 0;
 
 function appendToDisplay(char) {
     document.querySelector(".clear").innerHTML = 'C';
+    
     let display = document.querySelector(".result");
+    if (display.innerHTML == sum) {
+        display.innerHTML = "";
+    }
     
     if (display.innerHTML.length < MAX_LENGTH) {
         // Only allow one decimal in each input
@@ -108,7 +112,7 @@ function selectOperator(operator) {
     };
 
     if (operator != '=') {
-        operand.innerHTML = "";
+        operand.innerHTML = sum;
     };
 };
 
