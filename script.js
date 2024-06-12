@@ -1,7 +1,9 @@
 const MAX_LENGTH = 9;
 let sum = 0;
+let totalHistory = 0;
 
 function appendToDisplay(char) {
+    document.querySelector(".clear").innerHTML = 'C';
     let display = document.querySelector(".result");
     
     if (display.innerHTML.length < MAX_LENGTH) {
@@ -36,14 +38,16 @@ function clearDisplay() {
     if (display.innerHTML.length >= 1) {
         display.innerHTML = "";
         display.style.fontSize = '3.5rem';
+        document.querySelector(".clear").innerHTML = 'AC';
+    } else { // Clear twice in row: clear everything
+        history.innerHTML = "";
+        sum = 0;
+        totalHistory = 0;
+        prevOperator = "";
         let activeOperation = document.querySelector('.active');
         if (activeOperation) {
             activeOperation.classList.remove('active');
         };
-    } else { // Clear twice in row: clear everything
-        history.innerHTML = "";
-        sum = 0;
-        prevOperator = "";
     };
 };
 
@@ -91,11 +95,14 @@ function selectOperator(operator) {
         // If first operation
         if (!(history.innerHTML.includes('+') || history.innerHTML.includes('-') ||
             history.innerHTML.includes('÷') || history.innerHTML.includes('×'))) {
-                sum = operand.innerHTML;
+                if (!totalHistory) {
+                    sum = operand.innerHTML;
+                }
         } else {
             // Update operand
             const op2 = operand.innerHTML;
             sum = calculate(sum, op2, prevOperator);
+            totalHistory += sum;
         };
         history.innerHTML += ` ${operator} `;
     };
@@ -108,6 +115,8 @@ function selectOperator(operator) {
 function calculate(op1, op2, operator) {
     op1 = parseFloat(op1);
     op2 = parseFloat(op2);
+    console.log('sum', sum);
+    console.log(op1, operator.id, op2)
 
     switch(operator.id) {
         case 'add':
