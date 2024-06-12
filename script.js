@@ -119,8 +119,6 @@ function selectOperator(operator) {
 function calculate(op1, op2, operator) {
     op1 = parseFloat(op1);
     op2 = parseFloat(op2);
-    console.log('sum', sum);
-    console.log(op1, operator.id, op2)
 
     switch(operator.id) {
         case 'add':
