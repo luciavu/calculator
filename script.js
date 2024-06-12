@@ -5,7 +5,6 @@ let lastInput = 0;
 
 function appendToDisplay(char) {
     document.querySelector(".clear").innerHTML = 'C';
-    console.log(lastInput);
     let display = document.querySelector(".result");
     if (lastInput) {
         display.innerHTML = "";
@@ -96,7 +95,6 @@ function selectOperator(operator) {
     };
 
     // If last input operator, switch operator
-    console.log(lastInput)
     if (lastInput && prevOperator.id != 'equals') {
         history.innerHTML = history.innerHTML.slice(0,(-3 - operand.innerHTML.length));
         history.innerHTML += ` ${operator} `;
